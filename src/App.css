@@ -1,21 +1,60 @@
 .App {
   text-align: center;
   padding: 40px;
+  max-width: 300px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+  background-color: #444;
+  border-radius: 20px;
 }
 
-input {
-  margin: 10px;
-  padding: 8px;
-  font-size: 16px;
+.display {
+  background-color: #222;
+  color: #FF8C00;
+  padding: 15px;
+  font-size: 35px;
+  text-align: right;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  min-height: 80px;
+}
+
+.resultado {
+  font-size: 20px;
+  color: #fff;
+  margin-top: 5px;
+}
+
+.teclado {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
 }
 
 button {
-  margin: 5px;
-  padding: 10px 20px;
+  padding: 20px;
   font-size: 18px;
+  border: none;
+  border-radius: 40px;
   cursor: pointer;
+  background-color: #eee;
+  transition: background-color 0.2s;
 }
 
-h2 {
-  margin-top: 20px;
+button:hover {
+  background-color: #ccc;
+}
+
+.resultado {
+  grid-column: span 4;
+  background-color: #FF4500;
+  color: white;
+}
+
+.clear{
+  background-color: #B22222;
+}
+
+.action{
+  background-color: #808080
 }

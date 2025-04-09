@@ -2,64 +2,59 @@ import React, { useState } from 'react';
 import './App.css';
 
 function App() {
-  const [num1, setNum1] = useState('');
-  const [num2, setNum2] = useState('');
+  const [input, setInput] = useState('');
   const [resultado, setResultado] = useState(null);
 
-  const calcular = (operacao) => {
-    const n1 = parseFloat(num1);
-    const n2 = parseFloat(num2);
+  const adicionarValor = (valor) => {
+    setInput((prev) => prev + valor);
+  };
 
-    if (isNaN(n1) || isNaN(n2)) {
-      setResultado("Insira números válidos");
-      return;
+  const limpar = () => {
+    setInput('');
+    setResultado(null);
+  };
+
+  const calcular = () => {
+    try {
+      // eslint-disable-next-line no-eval
+      const res = eval(input);
+      setResultado(res);
+    } catch {
+      setResultado('Erro');
     }
-
-    let res = 0;
-    switch (operacao) {
-      case '+':
-        res = n1 + n2;
-        break;
-      case '-':
-        res = n1 - n2;
-        break;
-      case '*':
-        res = n1 * n2;
-        break;
-      case '/':
-        res = n2 !== 0 ? n1 / n2 : 'Divisão por zero';
-        break;
-      default:
-        res = 'Operação inválida';
-    }
-
-    setResultado(res);
   };
 
   return (
     <div className="App">
-      <h1>Calculadora - React</h1>
-      <input
-        type="number"
-        value={num1}
-        onChange={(e) => setNum1(e.target.value)}
-        placeholder="Número 1"
-      />
-      <input
-        type="number"
-        value={num2}
-        onChange={(e) => setNum2(e.target.value)}
-        placeholder="Número 2"
-      />
-      <div>
-        <button onClick={() => calcular('+')}>+</button>
-        <button onClick={() => calcular('-')}>-</button>
-        <button onClick={() => calcular('*')}>*</button>
-        <button onClick={() => calcular('/')}>/</button>
+
+      <div className="display">
+        <div className="input">{input}</div>
+        {resultado !== null && <div className="resultado-visor">= {resultado}</div>}
       </div>
-      {resultado !== null && (
-        <h2>Resultado: {resultado}</h2>
-      )}
+
+      <div className="teclado">
+        <button onClick={() => adicionarValor('7')}>7</button>
+        <button onClick={() => adicionarValor('8')}>8</button>
+        <button onClick={() => adicionarValor('9')}>9</button>
+        <button className='action' onClick={() => adicionarValor('/')}>/</button>
+
+        <button onClick={() => adicionarValor('4')}>4</button>
+        <button onClick={() => adicionarValor('5')}>5</button>
+        <button onClick={() => adicionarValor('6')}>6</button>
+        <button  className='action' onClick={() => adicionarValor('*')}>*</button>
+
+        <button onClick={() => adicionarValor('1')}>1</button>
+        <button onClick={() => adicionarValor('2')}>2</button>
+        <button onClick={() => adicionarValor('3')}>3</button>
+        <button className='action' onClick={() => adicionarValor('-')}>-</button>
+
+        <button onClick={() => adicionarValor('0')}>0</button>
+        <button  className='action' onClick={() => adicionarValor('.')}>.</button>
+        <button  className='action' onClick={() => adicionarValor('+')}>+</button>
+        <button className='clear' onClick={limpar}>C</button>
+
+        <button className='resultado' onClick={calcular}>=</button>
+      </div>
     </div>
   );
 }
