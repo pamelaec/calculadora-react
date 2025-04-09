@@ -25,7 +25,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="App">  
 
       <div className="display">
         <div className="input">{input}</div>
@@ -53,6 +53,7 @@ function App() {
         <button  className='action' onClick={() => adicionarValor('+')}>+</button>
         <button className='clear' onClick={limpar}>C</button>
 
+{/* resultado */}
         <button className='resultado' onClick={calcular}>=</button>
       </div>
     </div>
